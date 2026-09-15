@@ -3,6 +3,12 @@
 #include <sstream>
 
 std::string linhaPainel(const Sensor& sensor) {
-    // TODO ETAPA 01: consultar somente o contrato Sensor.
-    return sensor.tag() + ": PENDENTE";
+    std::ostringstream linha;
+
+    linha << sensor.tag() << ": "
+          << std::fixed << std::setprecision(1) << sensor.valor()
+          << ' ' << sensor.unidade() << " | "
+          << (sensor.emAlerta() ? "ALERTA" : "OK");
+
+    return linha.str();
 }

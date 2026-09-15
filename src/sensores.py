@@ -45,8 +45,7 @@ class SensorNivel(Sensor):
         return True
 
     def em_alerta(self):
-        # TODO: substituir o marcador pelo comportamento contratado.
-        return False
+        return self.valor() < 20.0
 
 
 class SensorTemperatura(Sensor):
@@ -67,8 +66,7 @@ class SensorTemperatura(Sensor):
         return True
 
     def em_alerta(self):
-        # TODO: substituir o marcador pelo comportamento contratado.
-        return False
+        return self.valor() > 45.0
 
 
 class SensorPressao(Sensor):

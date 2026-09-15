@@ -40,20 +40,25 @@ public:
 
 class SensorPressao : public Sensor {
     double valor_ = 1.0;
+
 public:
     explicit SensorPressao(std::string tag) : Sensor(std::move(tag)) {}
+
     double valor() const override { return valor_; }
+
     std::string unidade() const override { return "bar"; }
 
     bool atualizar(double leitura) override {
-        // TODO ETAPA 02: validar antes de alterar o estado.
-        (void)leitura;
-        return false;
+        if (!std::isfinite(leitura) || leitura < 0 || leitura > 10) {
+            return false;
+        }
+
+        valor_ = leitura;
+        return true;
     }
 
     bool emAlerta() const override {
-        // TODO: substituir o marcador pelo comportamento contratado.
-        return false;
+        return valor_ > 8.0;
     }
 };
 

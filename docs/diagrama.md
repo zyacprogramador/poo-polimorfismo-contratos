@@ -1,3 +1,5 @@
-# Modelo a completar
+A classe Sensor é uma classe abstrata que define o contrato utilizado pelas implementações de sensores. Ela possui a identificação tag e define as operações valor(), unidade(), atualizar() e emAlerta(), que devem ser implementadas pelas classes derivadas.
 
-Desenhe Sensor como classe abstrata, as três especializações e a dependência do painel em Sensor. Inclua as operações do contrato e marque as abstratas. O painel recebe uma referência; ele não possui os sensores.
+A partir da classe abstrata Sensor existem três especializações: SensorNivel, SensorTemperatura e SensorPressao. Cada uma possui seu próprio valor, unidade de medida, regras de validação da leitura e condição de alerta. O SensorNivel trabalha com valores em porcentagem, o SensorTemperatura com valores em graus Celsius e o SensorPressao com valores em bar.
+
+O Painel depende da classe abstrata Sensor para realizar suas consultas. Ele recebe uma referência para um sensor e utiliza somente as operações definidas pelo contrato, como valor(), unidade() e emAlerta(). Dessa forma, o painel não precisa conhecer ou selecionar diretamente qual implementação concreta está sendo utilizada e não possui os sensores. Isso permite adicionar novas implementações de Sensor sem alterar as funções do painel.

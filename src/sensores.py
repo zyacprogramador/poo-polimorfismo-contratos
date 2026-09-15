@@ -81,9 +81,11 @@ class SensorPressao(Sensor):
         return "bar"
 
     def atualizar(self, leitura):
-        # TODO ETAPA 02: validar antes de alterar o estado.
-        return False
+        if not isfinite(leitura) or leitura < 0 or leitura > 10:
+            return False
+
+        self._valor = leitura
+        return True
 
     def em_alerta(self):
-        # TODO: substituir o marcador pelo comportamento contratado.
-        return False
+        return self.valor() > 8.0
